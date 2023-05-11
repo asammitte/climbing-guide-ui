@@ -1,0 +1,95 @@
+@mixin unselectable {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+body {
+    font-family: $main_font_family;
+
+    *:focus {
+        outline: none;
+    }
+
+    .print-com-input {
+        margin: 0;
+        border: 1px solid $grayscale_gray-93;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+        color: $grayscale_gray-26;
+        font-size: 16px;
+        line-height: 24px;
+    
+        @mixin textarea_placeholder_default {
+            @include copy_m_reg;
+            color: $grayscale_black;
+            height: 24px;
+            left: 16px;
+            right: 16px;
+            top: 12px;
+            opacity: 0.6;
+        }
+    
+        @mixin textarea_placeholder_focus {
+            opacity: 0.2;
+        }
+    
+        &:hover {
+            border-color: $grayscale_gray-80;
+        }
+    
+        &:focus {
+            border-color: $grayscale_gray-20;
+        }
+    
+    
+        &::-webkit-input-placeholder {
+            @include textarea_placeholder_default;
+        }
+    
+        &:focus::-webkit-input-placeholder {
+            @include textarea_placeholder_focus;
+        }
+    
+    
+    
+        &:-moz-placeholder { /* Firefox 18- */
+            @include textarea_placeholder_default;
+        }
+    
+        &:focus:-moz-placeholder {
+            @include textarea_placeholder_focus;
+        }
+    
+    
+    
+        &::-moz-placeholder {  /* Firefox 19+ */
+            @include textarea_placeholder_default;
+        }
+    
+        &:focus::-moz-placeholder {
+            @include textarea_placeholder_focus;
+        }
+    
+    
+    
+        &:-ms-input-placeholder {
+            @include textarea_placeholder_default;
+        }
+    
+        &:focus:-ms-input-placeholder {
+            @include textarea_placeholder_focus;
+        }
+    
+    
+    
+        &::placeholder {
+            @include textarea_placeholder_default;
+        }
+    
+        &:focus::placeholder {
+            @include textarea_placeholder_focus;
+        }
+    }
+}

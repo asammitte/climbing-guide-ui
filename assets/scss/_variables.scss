@@ -1,0 +1,66 @@
+
+$main_font_family: 'IBM Plex Sans';
+
+$mobile_s: 320px;
+$mobile_m: 375px;
+$mobile: 420px; // in use
+$mobile_l: 420px; // original 425px
+$tablet_s: 766px; // in use
+$tablet: 995px; // in use
+$laptop: 1024px;
+$large: 1100px;
+$xlarge: 1300px;
+$desktop_s: 1200px; // in use
+$desktop_m: 1439px; // in use
+$desktop: 1440px;
+$xxlarge: 1440px;
+
+// SPACINGS
+$spacing-4xs: 2px;
+$spacing-3xs: 4px;
+$spacing-xxs: 6px;
+$spacing-xs: 8px;
+$spacing-s: 12px;
+$spacing-m: 16px;
+$spacing-l: 20px;
+$spacing-xl: 24px;
+$spacing-xxl: 32px;
+$spacing-3xl: 40px;
+$spacing-4xl: 48px;
+$spacing-5xl: 56px;
+$spacing-6xl: 64px;
+$spacing-7xl: 80px;
+
+
+// COLORS
+$grayscale_black: #000000;
+$grayscale_black_6: rgba(0,0,0, 0.6);
+$grayscale_neutral_black: #111111;
+$grayscale_gray-20: #2a2a2f;
+$grayscale_gray-20_6: rgba(42, 42, 47, 0.6);
+$grayscale_gray-26: #3b3b42;
+$grayscale_gray-60: #959698;
+$grayscale_gray-80: #c4c7cc;
+$grayscale_gray-93: #e8eaed;
+$grayscale_gray-97: #f2f4f8;
+$grayscale_white: #ffffff;
+$grayscale_white_6: rgba(255,255,255, 0.6);
+
+// COPY_M SECTION
+@mixin copy_m {
+    font-family: $main_font_family;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin copy_m_reg {
+    @include copy_m;
+    font-style: normal;
+    font-weight: normal;
+}
+
+@mixin copy_m_med {
+    @include copy_m;
+    font-style: normal;
+    font-weight: 500;
+}

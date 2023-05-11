@@ -1,0 +1,16 @@
+{
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    // "strict": true,
+    // "outDir": "dist",
+
+    // "target": "es5",
+    // "module": "commonjs",
+    // "noEmitOnError": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "forceConsistentCasingInFileNames": true
+  }
+}
