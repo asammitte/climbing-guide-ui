@@ -3525,11 +3525,6 @@ redis-parser@^3.0.0:
   dependencies:
     redis-errors "^1.0.0"
 
-reflex-grid@^2.0.7:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/reflex-grid/-/reflex-grid-2.0.7.tgz#1de51e6605b88649de339baa08dcb8dd6057f03c"
-  integrity sha512-me+LYQbfKIFWuEOU0JWXpo8AOx7XfF+NL2Vz6wQorAwEiN42Uf7yjy63gk+H25a2+cdmWC9icjqhcXso3N/F9g==
-
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"

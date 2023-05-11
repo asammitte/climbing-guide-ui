@@ -1,17 +1,17 @@
 import { $fetch,FetchOptions } from 'ohmyfetch'
 import { defineNuxtPlugin } from '#app'
-import FlyersModule from '@/repository/modules/flyers'
+import UsersModule from '@/repository/modules/users'
 
 /** ApiInstance interface provides us with good typing */
 interface IApiInstance {
-  flyers: FlyersModule
+  users: UsersModule
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
 
   
   const fetchOptions: FetchOptions = {
-    baseURL: nuxtApp.$config.API_BASE_URL,
+    baseURL: nuxtApp.$config.public.apiBase,
   }
 
   /** create a new instance of $fetcher with custom option */
@@ -19,7 +19,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   /** an object containing all repositories we need to expose */
   const modules: IApiInstance = {
-    flyers: new FlyersModule(apiFetcher),
+    users: new UsersModule(apiFetcher),
   }
 
   return {

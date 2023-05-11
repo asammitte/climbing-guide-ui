@@ -10,16 +10,14 @@
 <script setup lang="ts">
 const { $api } = useNuxtApp()
 
-const fl = await useAsyncData( 'data', () => $api.flyers.getAll() )
-console.log(fl)
+// const u = await useAsyncData( 'data', () => $api.users.getAll() )
+// console.log(u)
 
-const config = useRuntimeConfig()
-const route = useRoute()
+// const route = useRoute()
 
 // const flyers = await $api.flyers.getAll()
-const [ flyers ] = await Promise.all([
-  $api.flyers.getAll()
+const [ users ] = await Promise.all([
+  $api.users.getAll()
   // useFetch(config.API_BASE_URL+'/companies/'+route.params.company),
-  // useFetch(config.API_BASE_URL+'/companies/'+route.params.company+'/cafes/'+route.params.cafe)
 ])
 </script>
