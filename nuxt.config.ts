@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     apiSecret: '123',
     // Public keys that are exposed to the client
     public: {
-      apiBase: process.env.API_BASE_URL || '/api'
+      apiBase: process.env.API_BASE_URL || '/api',
+      googleClientId: process.env.GOOGLE_CLIENT_ID ?? '',
     }
   },
   typescript: {

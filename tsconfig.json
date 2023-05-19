@@ -4,13 +4,8 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    // "strict": true,
-    // "outDir": "dist",
-
-    // "target": "es5",
-    // "module": "commonjs",
-    // "noEmitOnError": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "forceConsistentCasingInFileNames": true
+    "types": [
+      "./types/GoogleAuth.d.ts"
+    ]
   }
 }

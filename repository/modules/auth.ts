@@ -1,16 +1,20 @@
 import HttpFactory from '@/repository/factory'
-import { ICreateAccountInput, ICreateAccountResponse, ILoginInput, ILoginResponse } from 'types'
+// import { ICreateAccountInput, ICreateAccountResponse, ILoginInput, ILoginResponse } from '~/types/GoogleAuth'
 
 class AuthModule extends HttpFactory {
   private RESOURCE = '/auth'
 
-  async login(credentials: ILoginInput): Promise<ILoginResponse> {
-    return await this.call<ILoginResponse>('POST', `${this.RESOURCE}/login`, credentials)
+  async googleVerify(credential: any): Promise<any> {
+    return await this.call<any>('POST', `${this.RESOURCE}/social-login`, {
+      email: 'pavli4enko30@gmail.com',
+      provider: 'GOOGLE',
+      accessToken: credential
+    })
   }
 
-  async create(account: ICreateAccountInput): Promise<ICreateAccountResponse> {
-    return await this.call<ICreateAccountResponse>('POST', `${this.RESOURCE}/register`, account)
-  }
+  // async create(account: ICreateAccountInput): Promise<ICreateAccountResponse> {
+  //   return await this.call<ICreateAccountResponse>('POST', `${this.RESOURCE}/register`, account)
+  // }
 }
 
 export default AuthModule

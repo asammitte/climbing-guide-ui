@@ -1,6 +1,7 @@
 <template>
   <div class="header-component">
     <img
+      v-if="false"
       width="69"
       height="69"
       src="https://www.print.com/wp-content/uploads/2022/09/printlogo.svg"
@@ -10,9 +11,9 @@
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <ul class="menu">
-      <li><nuxt-link :to="{ name: 'products-posters' }">Posters</nuxt-link></li>
-      <li><nuxt-link :to="{ name: 'products-flyers' }">Flyers</nuxt-link></li>
-      <li><nuxt-link :to="{ name: 'products-businesscards' }">Businesscards</nuxt-link></li>
+      <li><nuxt-link :to="{ name: 'users' }">Users</nuxt-link></li>
+      <!-- <li><nuxt-link :to="{ name: 'products-flyers' }">Flyers</nuxt-link></li>
+      <li><nuxt-link :to="{ name: 'products-businesscards' }">Businesscards</nuxt-link></li> -->
     </ul>
   </div>
 </template>
