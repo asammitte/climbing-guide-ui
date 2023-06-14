@@ -11,7 +11,11 @@
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <ul class="menu">
-      <li><nuxt-link :to="{ name: 'users' }">Users</nuxt-link></li>
+      <li>
+        <nuxt-link :to="{ name: 'guides-areas' }">
+          Guide
+        </nuxt-link>
+      </li>
       <!-- <li><nuxt-link :to="{ name: 'products-flyers' }">Flyers</nuxt-link></li>
       <li><nuxt-link :to="{ name: 'products-businesscards' }">Businesscards</nuxt-link></li> -->
     </ul>
@@ -83,7 +87,7 @@ a {
 
   .menu-icon {
     cursor: pointer;
-    display: inline-block;
+    // display: inline-block;
     float: right;
     padding: 28px 20px;
     position: relative;
