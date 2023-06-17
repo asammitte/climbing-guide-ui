@@ -8,10 +8,6 @@ class UsersModule extends HttpFactory {
   async getAll(): Promise<IUsersListItemResponse> {
     return await this.call<IUsersListItemResponse>('GET', `${this.RESOURCE}/`)
   }
-
-  // async create(account: ICreateAccountInput): Promise<ICreateAccountResponse> {
-  //   return await this.call<ICreateAccountResponse>('POST', `${this.RESOURCE}/register`, account)
-  // }
 }
 
 export default UsersModule
