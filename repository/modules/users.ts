@@ -1,5 +1,4 @@
 import HttpFactory from '@/repository/factory'
-// import { ICreateAccountInput, ICreateAccountResponse } from 'types'
 import { IUsersListItemResponse } from '@/types/users/IUsersListItemResponse'
 
 class UsersModule extends HttpFactory {
