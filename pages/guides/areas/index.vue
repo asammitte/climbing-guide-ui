@@ -16,10 +16,12 @@ const page = computed(() => route.query.page ? +route.query.page - 1 : 0)
 
 const { data: paginatedAreas, error } = await useAsyncData(
   'paginatedAreas',
-  () => $api.areas.getAll(page.value, 3), {
+  () => $api.areas.getAll(page.value, 50), {
     watch: [
       page
     ]
   }
 )
+
+const areas = paginatedAreas.value?.items || []
 </script>

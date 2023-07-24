@@ -9,12 +9,15 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/i18n": "^8.0.0-beta.13",
     "@types/node": "^18",
-    "nuxt": "^3.4.3",
-    "nuxt-icon": "^0.4.0",
-    "sass": "^1.62.1"
+    "nuxt": "^3.4.3"
   },
   "dependencies": {
-    "ohmyfetch": "^0.4.21"
+    "sass": "^1.62.1",
+    "ohmyfetch": "^0.4.21",
+    "scss": "^0.2.4",
+    "@mdi/font": "^7.2.96",
+    "vuetify": "^3.3.9"
   }
 }

@@ -15,8 +15,12 @@ export default defineNuxtConfig({
   },
   css: [
     '@/assets/scss/main.scss',
-    // '@/node_modules/reflex-grid/scss/reflex.scss'
+    'vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.min.css'
   ],
+  build: {
+    transpile: ['vuetify']
+  },
   vite: {
     css: {
       preprocessorOptions: {
@@ -26,5 +30,13 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ['nuxt-icon']
+  modules: [
+    // 'nuxt-icon',
+    '@nuxtjs/i18n'
+  ],
+  i18n: {
+    vueI18n: './i18n.config.ts', // if you are using custom path, default 
+    locales: ['ua', 'en'],
+    defaultLocale: 'ua'
+  }
 })

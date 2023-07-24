@@ -5,7 +5,8 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": [
-      "./types/GoogleAuth.d.ts"
+      "./types/GoogleAuth.d.ts",
+      "@nuxtjs/i18n"
     ]
   }
 }

@@ -1,11 +1,61 @@
 <template>
-  <div class="areas-list-component">
-    <ul>
-      <li v-for="a in props.areas" :key="a.id">
-        {{ a.name }}
-      </li>
-    </ul>
-  </div>
+  
+  
+  <v-navigation-drawer
+    permanent
+    location="left"
+    width="auto"
+  >
+    <!-- <template v-slot:prepend>
+      <v-list-item
+        lines="two"
+        prepend-avatar="https://randomuser.me/api/portraits/women/81.jpg"
+        title="Jane Smith"
+        subtitle="Logged in"
+      ></v-list-item>
+    </template>
+
+    <v-divider></v-divider> -->
+
+    <v-list density="compact">
+      <!-- <v-list-item variant="flat" base-color="secondary">
+        <template v-slot:prepend>
+          <v-icon icon="mdi-chevron-left" start></v-icon>
+        </template>
+        Буки
+      </v-list-item> -->
+
+      <v-list-item
+        v-for="(a, i) in props.areas"
+        :key="i"
+        :value="a"
+        variant="flat"
+      >
+        <v-list-item-title v-text="a.name"></v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+
+
+  <!-- <v-card> -->
+    <!-- <v-list density="compact">
+      <v-list-item variant="flat" base-color="secondary">
+        <template v-slot:prepend>
+          <v-icon icon="mdi-chevron-left" start></v-icon>
+        </template>
+        Буки
+      </v-list-item>
+
+      <v-list-item
+        v-for="(a, i) in props.areas"
+        :key="i"
+        :value="a"
+        variant="flat"
+      >
+        <v-list-item-title v-text="a.name"></v-list-item-title>
+      </v-list-item>
+    </v-list> -->
+  <!-- </v-card> -->
 </template>
 
 <script setup lang="ts">

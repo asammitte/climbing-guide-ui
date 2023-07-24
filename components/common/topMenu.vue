@@ -1,174 +1,82 @@
 <template>
-  <div class="header-component">
-    <img
-      v-if="false"
-      width="69"
-      height="69"
-      src="https://www.print.com/wp-content/uploads/2022/09/printlogo.svg"
-      decoding="async"
-      loading="lazy"
+  <div class="top-menu-component">
+    <v-navigation-drawer
+      v-model="drawer"
+      location="right"
+      temporary
+      color="primary"
     >
-    <input class="menu-btn" type="checkbox" id="menu-btn" />
-    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-    <ul class="menu">
-      <li>
-        <nuxt-link :to="{ name: 'guides-areas' }">
-          Guide
-        </nuxt-link>
-      </li>
-      <!-- <li><nuxt-link :to="{ name: 'products-flyers' }">Flyers</nuxt-link></li>
-      <li><nuxt-link :to="{ name: 'products-businesscards' }">Businesscards</nuxt-link></li> -->
-    </ul>
+      <v-list>
+        <v-list-item
+          prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
+          title="Sandra Adams"
+          subtitle="sandra_a88@gmailcom"
+        ></v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in menuItems"
+          :key="index"
+          nuxt
+          :to="item.url"
+          :color="item.isActive ? 'secondary' : 'primary'"
+          :variant="item.isActive ? 'flat' : 'text'"
+        >
+          {{ item.title }}
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar app density="compact" flat>
+      <v-toolbar color="primary" density="comfortable">
+        <v-toolbar-title>Title</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="d-none d-md-flex" text variant="flat" color="primary">
+          <v-btn
+            v-for="(item, index) in menuItems"
+            :key="index"
+            nuxt
+            :to="item.url"
+            :active="false"
+            :color="item.isActive ? 'secondary' : 'primary'"
+            flat
+          >
+            {{ item.title }}
+          </v-btn>
+          <language-selector />
+        </v-toolbar-items>
+        <v-app-bar-nav-icon class="d-md-none" variant="text" @click.stop="drawer = !drawer" />
+      </v-toolbar>
+    </v-app-bar>
   </div>
 </template>
 
-<style lang="scss">
-/* body {
-  margin: 0;
-  font-family: Helvetica, sans-serif;
-  background-color: #f4f4f4;
-}
+<script setup lang="ts">
+import LanguageSelector from '@/components/common/LanguageSelector.vue'
+import useMenuItems from '@/composables/MenuItems'
+import { ref } from 'vue'
 
-a {
-  color: #000;
-} */
+const drawer = ref(false)
 
-/* header */
+const menuItems = useMenuItems()
+</script>
 
-.header-component {
-  margin: 0;
-  font-family: Helvetica, sans-serif;
-  background-color: #f4f4f4;
-
-  background-color: #fff;
-  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
-  position: fixed;
-  width: 100%;
-  z-index: 3;
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    overflow: hidden;
-    background-color: #fff;
-
-    li a {
-      display: block;
-      padding: 20px 20px;
-      border-right: 1px solid $grayscale_gray-93;
-      text-decoration: none;
-      color: #000;
-    }
-  }
-
-  li a:hover,
-  .menu-btn:hover {
-    background-color: $grayscale_gray-93;
-  }
-
-  .logo {
-    display: block;
-    float: left;
-    font-size: 2em;
-    padding: 10px 20px;
-    text-decoration: none;
-  }
-
-  /* menu */
-
-  .menu {
-    clear: both;
-    max-height: 0;
-    transition: max-height .2s ease-out;
-  }
-
-  /* menu icon */
-
-  .menu-icon {
-    cursor: pointer;
-    // display: inline-block;
-    float: right;
-    padding: 28px 20px;
-    position: relative;
-    user-select: none;
-  }
-
-  .menu-icon .navicon {
-    background: #333;
-    display: block;
-    height: 2px;
-    position: relative;
-    transition: background .2s ease-out;
-    width: 18px;
-  }
-
-  .menu-icon .navicon:before,
-  .menu-icon .navicon:after {
-    background: #333;
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    transition: all .2s ease-out;
-    width: 100%;
-  }
-
-  .menu-icon .navicon:before {
-    top: 5px;
-  }
-
-  .menu-icon .navicon:after {
-    top: -5px;
-  }
-
-  /* menu btn */
-
-  .menu-btn {
-    display: none;
-  }
-
-  .menu-btn:checked ~ .menu {
-    max-height: 240px;
-  }
-
-  .menu-btn:checked ~ .menu-icon .navicon {
-    background: transparent;
-  }
-
-  .menu-btn:checked ~ .menu-icon .navicon:before {
-    transform: rotate(-45deg);
-  }
-
-  .menu-btn:checked ~ .menu-icon .navicon:after {
-    transform: rotate(45deg);
-  }
-
-  .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-  .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-    top: 0;
-  }
-
-  /* 48em = 768px */
-
-  @media (min-width: 48em) {
-    li {
-      float: left;
-
-      a {
-        padding: 20px 30px;
-      }
-    }
-
-    .menu {
-      clear: none;
-      float: right;
-      max-height: none;
-    }
-
-    .menu-icon {
-      display: none;
-    }
+<i18n>
+{
+  "ua": {
+    "guide": "Гайдбук",
+    "videos": "Відео",
+    "contact": "Зворотній звʼязок",
+    "login": "Log In"
+  },
+  "en": {
+    "guide": "Guidebook",
+    "videos": "Videos",
+    "contact": "Contact",
+    "login": "Log In"
   }
 }
-</style>
+</i18n>
