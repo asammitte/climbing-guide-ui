@@ -34,41 +34,44 @@
         </nuxt-link>
       </li>
 
-      <li
-        v-for="(page, index) in pages"
-        :key="index"
-        :class="[
-          pageClass,
-          page.selected ? activeClass : '',
-          page.disabled ? disabledClass : '',
-          page.breakView ? breakViewClass : ''
-        ]"
-      >
-        <span
-          v-if="page.breakView"
-          :class="[pageLinkClass, breakViewLinkClass]"
-          tabindex="0"
+      <!-- {{ pages }} -->
+      <template v-if="true">
+        <li
+          v-for="(page, index) in pages"
+          :key="index"
+          :class="[
+            pageClass,
+            page.selected ? activeClass : '',
+            page.disabled ? disabledClass : '',
+            page.breakView ? breakViewClass : ''
+          ]"
         >
-          <slot name="breakViewContent">
-            {{ breakViewText }}
-          </slot>
-        </span>
-        <span v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">
-          {{ page.content }}
-        </span>
-        <nuxt-link
-          v-else-if="!page.selected"
-          :to="{ path: '', query: getLinkQuery(page.index! + 1) }"
-          append
-          :class="pageLinkClass"
-          tabindex="0"
-        >
-          {{ page.content }}
-        </nuxt-link>
-        <span v-else :class="pageLinkClass" tabindex="0">
-          {{ page.content }}
-        </span>
-      </li>
+          <span
+            v-if="page.breakView"
+            :class="[pageLinkClass, breakViewLinkClass]"
+            tabindex="0"
+          >
+            <slot name="breakViewContent">
+              {{ breakViewText }}
+            </slot>
+          </span>
+          <span v-else-if="page.disabled" :class="pageLinkClass" tabindex="0">
+            {{ page.content }}
+          </span>
+          <nuxt-link
+            v-else-if="!page.selected"
+            :to="{ path: '', query: getLinkQuery(page.index! + 1) }"
+            append
+            :class="pageLinkClass"
+            tabindex="0"
+          >
+            {{ page.content }}
+          </nuxt-link>
+          <span v-else :class="pageLinkClass" tabindex="0">
+            {{ page.content }}
+          </span>
+        </li>
+      </template>
 
       <li
         v-if="!(lastPageSelected && hidePrevNext)"
@@ -106,7 +109,7 @@
 </template>
 
 <script setup lang="ts">
-import { LocationQuery } from 'vue-router';
+import { type LocationQuery } from 'vue-router';
 
 interface IPaginationProps {
   pageCount: number

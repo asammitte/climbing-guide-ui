@@ -1,6 +1,6 @@
 import HttpFactory from '@/repository/factory'
-import IAreasListItem from '@/types/areas/IAreasListItem'
-import IBaseViewList from '~/types/common/IBaseViewListModel'
+import { type IAreasListItem } from '@/types/areas/IAreasListItem'
+import { type IBaseViewList } from '@/types/common/IBaseViewListModel'
 
 class AreasModule extends HttpFactory {
   private RESOURCE = '/areas'

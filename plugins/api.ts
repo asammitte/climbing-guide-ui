@@ -1,13 +1,15 @@
-import { $fetch, FetchOptions } from 'ohmyfetch'
+import { $fetch, type FetchOptions } from 'ohmyfetch'
 import { defineNuxtPlugin } from '#app'
-import AreaModule from '@/repository/modules/areas'
+import AreasModule from '@/repository/modules/areas'
 import AuthModule from '@/repository/modules/auth'
+import SectorsModule from '@/repository/modules/sectors'
 import UsersModule from '@/repository/modules/users'
 
 /** ApiInstance interface provides us with good typing */
 interface IApiInstance {
-  areas: AreaModule
+  areas: AreasModule
   auth: AuthModule
+  sectors: SectorsModule
   users: UsersModule
 }
 
@@ -27,8 +29,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   /** an object containing all repositories we need to expose */
   const modules: IApiInstance = {
-    areas: new AreaModule(apiFetcher),
+    areas: new AreasModule(apiFetcher),
     auth: new AuthModule(apiFetcher),
+    sectors: new SectorsModule(apiFetcher),
     users: new UsersModule(apiFetcher)
   }
 

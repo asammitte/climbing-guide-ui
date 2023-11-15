@@ -1,4 +1,4 @@
-import { $Fetch } from 'ohmyfetch'
+import { type $Fetch } from 'ohmyfetch'
 
 class HttpFactory {
   private $fetch: $Fetch;

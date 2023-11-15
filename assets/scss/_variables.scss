@@ -1,50 +1,51 @@
+// @import './_variables.scss';
 
 $main_font_family: 'IBM Plex Sans';
 
-$mobile_s: 320px;
-$mobile_m: 375px;
-$mobile: 420px; // in use
-$mobile_l: 420px; // original 425px
-$tablet_s: 766px; // in use
-$tablet: 995px; // in use
+$mobile: 480px;
+$tablet: 768px;
 $laptop: 1024px;
-$large: 1100px;
-$xlarge: 1300px;
-$desktop_s: 1200px; // in use
-$desktop_m: 1439px; // in use
-$desktop: 1440px;
-$xxlarge: 1440px;
-
-// SPACINGS
-$spacing-4xs: 2px;
-$spacing-3xs: 4px;
-$spacing-xxs: 6px;
-$spacing-xs: 8px;
-$spacing-s: 12px;
-$spacing-m: 16px;
-$spacing-l: 20px;
-$spacing-xl: 24px;
-$spacing-xxl: 32px;
-$spacing-3xl: 40px;
-$spacing-4xl: 48px;
-$spacing-5xl: 56px;
-$spacing-6xl: 64px;
-$spacing-7xl: 80px;
-
+$desktop: 1200px;
 
 // COLORS
-$grayscale_black: #000000;
-$grayscale_black_6: rgba(0,0,0, 0.6);
-$grayscale_neutral_black: #111111;
-$grayscale_gray-20: #2a2a2f;
-$grayscale_gray-20_6: rgba(42, 42, 47, 0.6);
-$grayscale_gray-26: #3b3b42;
-$grayscale_gray-60: #959698;
-$grayscale_gray-80: #c4c7cc;
-$grayscale_gray-93: #e8eaed;
-$grayscale_gray-97: #f2f4f8;
-$grayscale_white: #ffffff;
-$grayscale_white_6: rgba(255,255,255, 0.6);
+$cl-background: #121212;
+$cl-surface: #212121;
+$cl-primary: #0057B8;
+$cl-secondary: #FFD700;
+$cl-error: #CF6679;
+$cl-info: #2196F3;
+$cl-success: #4CAF50;
+$cl-warning: #FB8C00;
+
+$primary: #1976D2;
+$secondary: #424242;
+$accent: #82B1FF;
+$error: #FF5252;
+$info: #2196F3;
+$success: #4CAF50;
+$warning: #FFC107;
+
+/* Define styles for the default root window element */
+:root {
+    --background-primary: #ebebeb;
+    --background-secondary: #fafafa;
+    --text-primary: #1976D2;
+    --text-secondary: #424242;
+    --accent: #82B1FF;
+    --error: #FF5252;
+    --info: #2196F3;
+    --success: #4CAF50;
+    --warning: #FFC107;
+    // --element-size: 4rem;
+}
+
+/* Define styles for the root window with dark - mode preference */
+:root.dark-theme {
+    --background-primary: #1e1e1e;
+    --background-secondary: #2d2d30;
+    --accent: #3f3f3f;
+    --text-primary: #ddd;
+}
 
 // COPY_M SECTION
 @mixin copy_m {

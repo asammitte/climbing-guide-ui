@@ -1,5 +1,5 @@
 import HttpFactory from '@/repository/factory'
-import { IUsersListItemResponse } from '@/types/users/IUsersListItemResponse'
+import { type IUsersListItemResponse } from '@/types/users/IUsersListItemResponse'
 
 class UsersModule extends HttpFactory {
   private RESOURCE = '/users'

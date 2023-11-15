@@ -3,8 +3,6 @@ export interface IBaseViewList<T> {
   pagination: IPagination;
 }
 
-export default IBaseViewList
-
 export interface IPagination {
   pageIndex: number;
   pageSize: number;

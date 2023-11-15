@@ -1,9 +1,8 @@
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 
 export interface IMenuItem {
   title: string,
   url: string,
-  isActive: any,
   icon: string
 }
 
@@ -13,14 +12,12 @@ export default function useMenuItems(): IMenuItem[] {
   const { setLocaleMessage, t } = useI18n()
 
   setLocaleMessage('en', {
-    contact: 'Contact',
     guide: 'Guide',
     home: 'Home',
     videos: 'Video',
     profile: 'Profile'
   })
   setLocaleMessage('ua', {
-    contact: 'Зворотній звʼязок',
     guide: 'Гайдбук',
     home: 'Головна',
     videos: 'Відео',
@@ -38,33 +35,23 @@ export default function useMenuItems(): IMenuItem[] {
     {
       title: t('home'),
       url: localePath({ name: 'index' }),
-      isActive: false,
       icon: 'mdi-home'
     },
     {
       title: t('guide'),
-      url: localePath({ name: 'guides-areas' }),
-      isActive: false,
+      url: localePath({ name: 'areas' }),
       icon: 'mdi-map-marker'
     },
     {
       title: t('videos'),
       url: localePath({ name: 'videos' }),
-      isActive: false,
       icon: 'mdi-video'
     },
     {
       title: t('profile'),
       url: localePath({ name: 'user' }),
-      isActive: false,
       icon: 'mdi-owl'
     },
-    // {
-    //   title: t('contact'),
-    //   url: localePath({ name: 'contact' }),
-    //   isActive: isContactActive.value,
-    //   icon: 'mdi-email'
-    // },
   ])
 
   watch(() => route.path, () => {

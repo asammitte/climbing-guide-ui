@@ -3,5 +3,3 @@ export interface IAreasListItem {
   name: string
   countryName: string
 }
-
-export default IAreasListItem
