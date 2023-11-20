@@ -1,9 +1,47 @@
-:root {
-    --primary: #0057B8;
-    --secondary: #FFD700;
+@import 'md3/theme.css';
 
-    --primary-rgb: 0, 87, 184;
-    --secondary-rgb: 255, 215, 0;
+/* Define styles for the default root window element */
+:root {
+    --brand: #0057b8; // #6750A4
+    --background-primary: #ebebeb;
+    --background-secondary: #fafafa;
+    --background-accent: #cacaca;
+    --text-primary: #1976D2;
+    --text-secondary: #424242;
+    --text-accent: #82B1FF;
+    --error: #FF5252;
+    --info: #2196F3;
+    --success: #4CAF50;
+    --warning: #FFC107;
+    // RGB
+    --brand-rgb: 0, 87, 184;
+    --brand-yellow-rgb: 255, 215, 0;
+    --background-primary-rgb: 235, 235, 235;
+    --background-secondary-rgb: 250, 250, 250;
+    --background-accent-rgb: 202, 202, 202;
+    --text-primary-rgb: 25, 118, 210;
+    --text-secondary-rgb: 66, 66, 66;
+    --text-accent-rgb: 130, 177, 255;
+    --error-rgb: 255, 82, 82;
+    --info-rgb: 33, 150, 243;
+    --success-rgb: 76, 175, 80;
+    --warning-rgb: 255, 193, 7;
+    // --element-size: 4rem;
+}
+
+/* Define styles for the root window with dark - mode preference */
+:root.dark-theme {
+    --brand: #ffd700; // #958DA5
+    --background-primary: #1e1e1e;
+    --background-secondary: #2d2d30;
+    --background-accent: #3f3f3f;
+    --text-primary: #ddd;
+    // RGB
+    --background-primary-rgb: 30, 30, 30;
+    --background-secondary-rgb: 45, 45, 48;
+    --background-accent-rgb: 63, 63, 63;
+    --text-primary-rgb: 221, 221, 221;
+    --brand-rgb: 255, 215, 0;
 }
 
 @mixin unselectable {
@@ -15,7 +53,7 @@
 body {
     min-height: 100vh;
     color: var(--text-secondary);
-    background-color: var(--background-primary);
+    // background-color: var(--md-sys-color-surface);
     transition: color 0.5s, background-color 0.5s;
     // line-height: 1.6;
     font-family:
@@ -35,17 +73,22 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+
+    a {
+        transition: .4s;
+        text-decoration: inherit;
+        color: inherit;
+    }
 }
 
-// body {
-//     font-family: $main_font_family;
-//     margin: 0;
+body {
+    // font-family: $main_font_family;
+    margin: 0;
 
-//     *:focus {
-//         outline: none;
-//     }
+    *:focus {
+        outline: none;
+    }
 
-//     a.router-link-exact-active {
-//         color: aquamarine;
-//     }
-// }
+    
+}

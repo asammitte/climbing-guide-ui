@@ -11,11 +11,15 @@
   "devDependencies": {
     "@nuxtjs/i18n": "^8.0.0-beta.13",
     "@types/node": "^18",
-    "nuxt": "^3.8.1"
+    "nuxt": "^3.8.1",
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
+    "scss": "^0.2.4",
+    "webpack": "^5.89.0"
   },
   "dependencies": {
-    "sass": "^1.62.1",
-    "ohmyfetch": "^0.4.21",
-    "scss": "^0.2.4"
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.3.67",
+    "ohmyfetch": "^0.4.21"
   }
 }

@@ -2,50 +2,10 @@
 
 $main_font_family: 'IBM Plex Sans';
 
-$mobile: 480px;
-$tablet: 768px;
-$laptop: 1024px;
-$desktop: 1200px;
-
-// COLORS
-$cl-background: #121212;
-$cl-surface: #212121;
-$cl-primary: #0057B8;
-$cl-secondary: #FFD700;
-$cl-error: #CF6679;
-$cl-info: #2196F3;
-$cl-success: #4CAF50;
-$cl-warning: #FB8C00;
-
-$primary: #1976D2;
-$secondary: #424242;
-$accent: #82B1FF;
-$error: #FF5252;
-$info: #2196F3;
-$success: #4CAF50;
-$warning: #FFC107;
-
-/* Define styles for the default root window element */
-:root {
-    --background-primary: #ebebeb;
-    --background-secondary: #fafafa;
-    --text-primary: #1976D2;
-    --text-secondary: #424242;
-    --accent: #82B1FF;
-    --error: #FF5252;
-    --info: #2196F3;
-    --success: #4CAF50;
-    --warning: #FFC107;
-    // --element-size: 4rem;
-}
-
-/* Define styles for the root window with dark - mode preference */
-:root.dark-theme {
-    --background-primary: #1e1e1e;
-    --background-secondary: #2d2d30;
-    --accent: #3f3f3f;
-    --text-primary: #ddd;
-}
+$mobile-breakpoint: 480px;
+$tablet-breakpoint: 768px;
+$laptop-breakpoint: 1024px;
+$desktop-breakpoint: 1200px;
 
 // COPY_M SECTION
 @mixin copy_m {
