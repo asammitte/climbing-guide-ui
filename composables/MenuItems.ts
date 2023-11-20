@@ -1,9 +1,20 @@
 import { ref, watch } from 'vue'
-
+import {
+  mdiHome,
+  mdiHomeOutline,
+  mdiMapMarker,
+  mdiMapMarkerOutline,
+  mdiVideo,
+  mdiVideoOutline,
+  mdiAccount,
+  mdiAccountOutline
+ } from '@mdi/js'
 export interface IMenuItem {
-  title: string,
-  url: string,
+  title: string
+  url: string
+  isActive: boolean
   icon: string
+  activeIcon: string
 }
 
 export default function useMenuItems(): IMenuItem[] {
@@ -25,9 +36,10 @@ export default function useMenuItems(): IMenuItem[] {
   })
 
   const isActive = (url: string): boolean => {
-    if (url === '/') {
-      return route.path === '/'
+    if (url === localePath({ name: 'index' })) {
+      return route.path === localePath({ name: 'index' })
     }
+
     return route.path?.startsWith(url)
   }
 
@@ -35,22 +47,30 @@ export default function useMenuItems(): IMenuItem[] {
     {
       title: t('home'),
       url: localePath({ name: 'index' }),
-      icon: 'mdi-home'
+      isActive: false,
+      icon: mdiHomeOutline,
+      activeIcon: mdiHome
     },
     {
       title: t('guide'),
       url: localePath({ name: 'areas' }),
-      icon: 'mdi-map-marker'
+      isActive: false,
+      icon: mdiMapMarkerOutline,
+      activeIcon: mdiMapMarker
     },
     {
       title: t('videos'),
       url: localePath({ name: 'videos' }),
-      icon: 'mdi-video'
+      isActive: false,
+      icon: mdiVideoOutline,
+      activeIcon: mdiVideo
     },
     {
       title: t('profile'),
       url: localePath({ name: 'user' }),
-      icon: 'mdi-owl'
+      isActive: false,
+      icon: mdiAccountOutline,
+      activeIcon: mdiAccount
     },
   ])
 
