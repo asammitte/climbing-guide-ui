@@ -37,7 +37,6 @@ const { data: paginatedAreas, pending } = await useAsyncData(
   }
 )
 
-console.log(pending.value)
 const refresh = () => refreshNuxtData("paginatedAreas")
 
 const areas = paginatedAreas.value?.items || []
