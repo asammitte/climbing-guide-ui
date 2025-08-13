@@ -8,6 +8,7 @@
       data-callback="googleLoginCallback"
       data-auto_select="true"
       data-itp_support="true"
+      data-use_fedcm_for_prompt="true"
     ></div>
 
     <div
@@ -24,7 +25,7 @@
 
 <script setup lang="ts">
 const config = useRuntimeConfig()
-const { $api } = useNuxtApp()
+const auth = useAuth()
 
 useHead({
   script: [{
@@ -36,13 +37,7 @@ useHead({
 
 if (process.client) {
   window.googleLoginCallback = async (userData) => {
-    console.log(userData)
-
-    await $api.auth.googleVerify(userData.credential)
-      .then((res: any) => {
-        console.log("pl", res)
-      })
-      .catch(console.error)
+    await auth.socialLogin('GOOGLE', userData.credential)
   }
 }
 </script>

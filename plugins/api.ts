@@ -1,5 +1,5 @@
-import { $fetch, type FetchOptions } from 'ohmyfetch'
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin, useRequestHeaders } from '#app'
+import { appendResponseHeader } from 'h3'
 import AreasModule from '@/repository/modules/areas'
 import AuthModule from '@/repository/modules/auth'
 import SectorsModule from '@/repository/modules/sectors'
@@ -19,25 +19,58 @@ declare module "#app" {
   }
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const fetchOptions: FetchOptions = {
-    baseURL: nuxtApp.$config.public.apiBase,
-  }
+export default defineNuxtPlugin({
+  setup() {
+    const headersToForward = useRequestHeaders([
+      'cookie',
+      'accept',
+      // 'accept-language',
+      // 'user-agent',
+      // 'referer',
+    ])
 
-  /** create a new instance of $fetcher with custom option */
-  const apiFetcher = $fetch.create(fetchOptions)
+    // const headersToForward = useRequestHeaders()
 
-  /** an object containing all repositories we need to expose */
-  const modules: IApiInstance = {
-    areas: new AreasModule(apiFetcher),
-    auth: new AuthModule(apiFetcher),
-    sectors: new SectorsModule(apiFetcher),
-    users: new UsersModule(apiFetcher)
-  }
+    // Create a new instance of fecther with custom option
+    const apiFetcher = $fetch.create({
+      onRequest(ctx) {
+        if (process.server) {
+          // Specify which headers you want to forward:
+          // Add or remove any headers your backend needs: 'cookie', 'accept', 'accept-language', etc.
+          
 
-  return {
-    provide: {
-      api: modules,
+          // Merge them into ctx.options.headers (if you already have something there)
+          ctx.options.headers = {
+            ...ctx.options.headers,
+            ...headersToForward,
+          }
+
+          // Keep the current request event on ctx so we can attach response cookies
+          // ;(ctx as any).event = useRequestEvent()
+        }
+      },
+      onResponse(ctx) {
+        if (process.server) {
+          const setCookieHeader = ctx.response.headers.get('set-cookie')
+          if (setCookieHeader) {
+            appendResponseHeader((ctx as any).event, 'set-cookie', setCookieHeader)
+          }
+        }
+      },
+    })
+
+    /** an object containing all repositories we need to expose */
+    const modules: IApiInstance = {
+      areas: new AreasModule(apiFetcher),
+      auth: new AuthModule(apiFetcher),
+      sectors: new SectorsModule(apiFetcher),
+      users: new UsersModule(apiFetcher)
+    }
+
+    return {
+      provide: {
+        api: modules,
+      }
     }
   }
 })

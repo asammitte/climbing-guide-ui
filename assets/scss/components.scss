@@ -1,0 +1,42 @@
+@import "md3/typography.module";
+
+.list {
+  .list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+
+    .list-icon {
+      background-color: var(--md-sys-color-secondary-container); // TODO: remove later
+      border-radius: 16px;
+      height: 56px;
+      width: 56px;
+
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .list-content {
+      padding: 0 16px;
+
+      .list-headline {
+        @extend .body-large;
+      }
+
+      .list-supporting-text {
+        @extend .body-medium;
+
+        .area-list-stats {
+          display: flex;
+        }
+      }
+    }
+  }
+}

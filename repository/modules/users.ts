@@ -4,9 +4,9 @@ import { type IUsersListItemResponse } from '@/types/users/IUsersListItemRespons
 class UsersModule extends HttpFactory {
   private RESOURCE = '/users'
 
-  async getAll(): Promise<IUsersListItemResponse> {
-    return await this.call<IUsersListItemResponse>('GET', `${this.RESOURCE}/`)
-  }
+  // async getAll(): Promise<IUsersListItemResponse> {
+  //   return await this.call<IUsersListItemResponse>('GET', `${this.RESOURCE}/`)
+  // }
 }
 
 export default UsersModule

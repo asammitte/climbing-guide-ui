@@ -7,21 +7,85 @@ $tablet-breakpoint: 768px;
 $laptop-breakpoint: 1024px;
 $desktop-breakpoint: 1200px;
 
-// COPY_M SECTION
-@mixin copy_m {
-    font-family: $main_font_family;
+@mixin heading1 {
+    font-family: Manrope;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 130%; /* 62.4px */
+    text-transform: uppercase;
+}
+
+@mixin heading2 {
+    font-family: Manrope;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 130%; /* 33.8px */
+    text-transform: uppercase;
+}
+
+@mixin heading3 {
+    font-family: Manrope;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 26px */
+}
+
+@mixin heading4 {
+    font-family: Manrope;
     font-size: 16px;
-    line-height: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 20.8px */
 }
 
-@mixin copy_m_reg {
-    @include copy_m;
+@mixin heading5 {
+    font-family: Manrope;
+    font-size: 14px;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 700;
+    line-height: 130%; /* 18.2px */
 }
 
-@mixin copy_m_med {
-    @include copy_m;
+@mixin heading6 {
+    font-family: Manrope;
+    font-size: 10px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
+    line-height: 130%; /* 13px */
+    text-transform: uppercase;
+}
+
+@mixin body_large {
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 135%; /* 21.6px */
+}
+
+@mixin body_medium {
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 18.2px */
+}
+
+@mixin body_small {
+    font-family: Manrope;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 15.6px */
+}
+
+@mixin copyright {
+    font-family: Manrope;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 13px */
 }

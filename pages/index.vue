@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h1>Welcome to the homepage</h1>
+    <span>Welcome to the homepage</span>
+    <svg-icon icon="cg_guide_outlined" />
+    <svg-icon icon="cg_guide_outlined" size="lg"/>
+    <svg-icon icon="cg_guide_outlined" size="xl"/>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SvgIcon from '~/components/common/SvgIcon.vue'
+</script>

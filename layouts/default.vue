@@ -1,21 +1,28 @@
 <template>
   <div class="default-layout">
     <header>
-      <TopMenu />
+      <!-- <top-app-bar /> -->
     </header>
-    <nuxt-page />
+    <mobile-slide-menu />
+    <top-desktop-menu />
+    <div class="container">
+      <slot />
+    </div>
     <footer>
       <!-- <div>&copy; {{ new Date().getFullYear() }}</div> -->
-      <BottomNavigation />
+      <bottom-navigation />
     </footer>
   </div>
 </template>
 
 <script setup>
-import TopMenu from '@/components/navigation/TopMenu.vue'
-import BottomNavigation from '@/components/navigation/BottomNavigation.vue'
+import MobileSlideMenu from '~/components/navigation/MobileSlideMenu.vue'
+import BottomNavigation from '~/components/navigation/BottomNavigation.vue'
+import TopDesktopMenu from '~/components/navigation/TopDesktopMenu.vue'
 
 import { ref } from 'vue'
+
+const { status } = useAuth()
 
 const items = ref([
   {
@@ -29,12 +36,15 @@ const drawer = ref(null)
 
 <style lang="scss">
 .default-layout {
-  background-color: var(--md-sys-color-surface);
-  min-height: 100vh;
-}
+  width: 100vw;
+  // background-color: var(--md-sys-color-surface);
+  min-height: calc(100vh - 77px);
+  padding-bottom: 77px;
+  // padding-top: 64px;
 
-header {
-  display: none;
+  // height: calc(100% - 77px); // 77px default height of BottomNavigation
+  // overflow-y: scroll;
+  // position: fixed;
 }
 
 footer {

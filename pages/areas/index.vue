@@ -1,43 +1,70 @@
 <template>
   <div class="areas-list-page">
-    <!-- <Suspense>
-      <template #default> -->
-      <template v-if="pending">
-        Loading...
-      </template>
-      <template v-else>
-        <AreasList :areas="paginatedAreas!.items" />
-        <Pagination :page-count="paginatedAreas!.pagination.totalPages" />
-      </template>
-
-      <button @click="refresh">Refresh</button>
-      <!-- </template>
-      <template #fallback>
-        loading
-      </template>
-    </Suspense> -->
+    <top-app-bar icon="cg_arrow_back" :title="t('guide')" />
+    <div class="desktop-title">{{ t('guide') }}</div>
+    <template v-if="paginatedAreasStatus === 'success'">
+      <div class="areas-list-container">
+        <areas-list :areas="paginatedAreasAsync.items" />
+      </div>
+    </template>
+    <loading-status v-else :status="paginatedAreasStatus" />
   </div>
 </template>
 
-<script setup lang="ts">
-import AreasList from '@/components/areas/AreasList.vue'
-import Pagination from '@/components/common/Pagination.vue'
 
+<script setup lang="ts">
+import { useLayoutStore } from '~/stores/LayoutStore'
+import AreasList from '~/components/areas/AreasList.vue'
+import LoadingStatus from '~/components/common/LoadingStatus.vue'
+import TopAppBar from '~/components/navigation/TopAppBar.vue'
+
+const layoutStore = useLayoutStore()
 const route = useRoute()
 const { $api } = useNuxtApp()
 
-const page = computed(() => route.query.page ? +route.query.page - 1 : 0)
+const { t } = useI18n({
+  useScope: 'local',
+  messages: {
+    en: {
+      guide: 'Guide',
+    },
+    ua: {
+      guide: 'Гайдбук',
+    },
+  }
+})
 
-const { data: paginatedAreas, pending } = await useAsyncData(
-  'paginatedAreas',
-  () => $api.areas.getAll(page.value, 50), {
-    watch: [
-      page
-    ]
+const page = computed(() => route.query.page ? +route.query.page - 1 : 0)
+const { data: paginatedAreasAsync, status: paginatedAreasStatus } = await useAsyncData(
+  'paginatedAreasAsync',
+  async () => await $api.areas.getAll(page.value, 50),
+  {
+    lazy: true,
+    watch: [ page ]
   }
 )
-
-const refresh = () => refreshNuxtData("paginatedAreas")
-
-const areas = paginatedAreas.value?.items || []
 </script>
+
+
+<style lang="scss" scoped>
+.areas-list-page {
+  padding: 24px 16px;
+
+  .desktop-title {
+    display: none;
+  }
+}
+
+@media (min-width: $laptop-breakpoint) {
+  .areas-list-page {
+    padding: 0;
+
+    .desktop-title {
+      display: block;
+      @include heading2;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+  }
+}
+</style>

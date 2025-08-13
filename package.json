@@ -11,7 +11,7 @@
   "devDependencies": {
     "@nuxtjs/i18n": "^8.0.0-beta.13",
     "@types/node": "^18",
-    "nuxt": "^3.8.1",
+    "nuxt": "^3.9.3",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "scss": "^0.2.4",
@@ -20,6 +20,11 @@
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.3.67",
-    "ohmyfetch": "^0.4.21"
+    "@nuxt/http": "^0.6.4",
+    "@nuxt/image": "^1.2.0",
+    "@pinia/nuxt": "^0.5.1",
+    "ohmyfetch": "^0.4.21",
+    "paper": "^0.12.17",
+    "pinia": "^2.1.7"
   }
 }

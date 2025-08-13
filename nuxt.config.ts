@@ -1,14 +1,26 @@
+import fs from 'fs'
+
+// Read SSL certificate and key files synchronously
+const key = fs.readFileSync('./localhost.key', 'utf-8')
+const cert = fs.readFileSync('./localhost.crt', 'utf-8')
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // devServer: {
+  //   https: {
+  //     key,
+  //     cert,
+  //   },
+  // },
   runtimeConfig: {
     // Private keys are only available on the server
     apiSecret: '123',
     // Public keys that are exposed to the client
+    apiProxyUrl: process.env.PROXY_API_URL,
     public: {
-      apiBase: process.env.API_BASE_URL || '/api',
+      // API_BASE_URL: process.env.API_BASE_URL || '/api',
       googleClientId: process.env.GOOGLE_CLIENT_ID ?? '',
-    }
+    },
   },
   typescript: {
     strict: true
@@ -26,8 +38,16 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@nuxtjs/i18n'
+    "@nuxt/image",
+    '@nuxtjs/i18n',
+    '@pinia/nuxt',
+    // '@sidebase/nuxt-auth'
   ],
+
+  // plugins: [
+  //   '@/plugins/ofetch.ts',
+  // ],
+
   i18n: {
     strategy: 'prefix_except_default',
     // vueI18n: './i18n.config.ts', // if you are using custom path, default
@@ -41,6 +61,7 @@ export default defineNuxtConfig({
         name: 'English'
       },
     ],
-    defaultLocale: 'ua'
+    defaultLocale: 'ua',
+    detectBrowserLanguage: false
   }
 })
