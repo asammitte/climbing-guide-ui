@@ -1,4 +1,4 @@
-import { defineNuxtPlugin, useRequestHeaders } from '#app'
+import { defineNuxtPlugin, useRequestHeaders, useRequestEvent, useNuxtApp } from '#app'
 import { appendResponseHeader } from 'h3'
 import AreasModule from '@/repository/modules/areas'
 import AuthModule from '@/repository/modules/auth'
@@ -29,6 +29,13 @@ export default defineNuxtPlugin({
       // 'referer',
     ])
 
+    const isTransliterationRequired = () => {
+      // Works in both server & client. i18n instance is available on nuxtApp.
+      const i18n = useI18n()
+      // Prefer the global scope in a plugin; falls back safely.
+      return i18n?.locale?.value !== 'ua'
+    }
+
     // const headersToForward = useRequestHeaders()
 
     // Create a new instance of fecther with custom option
@@ -37,16 +44,20 @@ export default defineNuxtPlugin({
         if (process.server) {
           // Specify which headers you want to forward:
           // Add or remove any headers your backend needs: 'cookie', 'accept', 'accept-language', etc.
-          
 
           // Merge them into ctx.options.headers (if you already have something there)
           ctx.options.headers = {
             ...ctx.options.headers,
-            ...headersToForward,
+            ...headersToForward
           }
 
           // Keep the current request event on ctx so we can attach response cookies
           // ;(ctx as any).event = useRequestEvent()
+        }
+
+        ctx.options.headers = {
+          ...ctx.options.headers,
+          'X-Transliterate': isTransliterationRequired().toString(),
         }
       },
       onResponse(ctx) {

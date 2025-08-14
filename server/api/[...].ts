@@ -15,11 +15,8 @@ export default eventHandler(async (event) => {
     ...headers,
     'Request-Path': '/',
     accept: 'application/json',
-    'Authorization': accessToken ? `Bearer ${accessToken}` : '',
-    'X-Transliterate': 'true'
+    'Authorization': accessToken ? `Bearer ${accessToken}` : ''
   }
-
-  console.log(headers)
 
   return proxyRequest(event, target, { headers })
 })
