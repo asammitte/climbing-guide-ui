@@ -1,3 +1,5 @@
+import { resolve } from 'path'
+import customRoutes from './pages_man/customRoutes'
 import fs from 'fs'
 
 // Read SSL certificate and key files synchronously
@@ -22,12 +24,48 @@ export default defineNuxtConfig({
       googleClientId: process.env.GOOGLE_CLIENT_ID ?? '',
     },
   },
+
+  hooks: {
+    'pages:extend'(routes: Array<any>) {
+      function resolveRoutes(route: any) {
+        return {
+          ...route,
+          file: resolve(__dirname, route.file),
+          children: route.children ? route.children.map(resolveRoutes) : []
+        }
+      }
+      
+      customRoutes.forEach(route => {
+        routes.push(resolveRoutes(route))
+      })
+
+      // customRoutes.forEach(route => {
+      //   routes.push({
+      //     ...route,
+      //     file: resolve(__dirname, route.file),
+      //     ...(route.children && route.children.length > 0
+      //       ? { children: route.children.map(child => ({
+      //           ...child,
+      //           file: resolve(__dirname, child.file)
+      //         }))
+      //       }
+      //       : {})
+      //   })
+      // })
+
+      // uncomment line below to debug routes
+      console.log(routes) // Debugging: See the final route list
+    }
+  },
+
   typescript: {
     strict: true
   },
+
   css: [
     '@/assets/scss/main.scss',
   ],
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -37,6 +75,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   modules: [
     "@nuxt/image",
     '@nuxtjs/i18n',

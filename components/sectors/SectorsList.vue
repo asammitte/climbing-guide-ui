@@ -27,8 +27,8 @@
               :to="localePath({
                 name: 'areas-areaId-sectors-sectorId',
                 params: {
-                  areaId: s.areaId.toString(),
-                  sectorId: s.id.toString()
+                  areaId: s.areaId,
+                  sectorId: s.id
                 }
               })" 
             >
