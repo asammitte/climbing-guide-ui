@@ -54,7 +54,7 @@ export default defineNuxtConfig({
       // })
 
       // uncomment line below to debug routes
-      console.log(routes) // Debugging: See the final route list
+      // console.log(routes) // Debugging: See the final route list
     }
   },
 

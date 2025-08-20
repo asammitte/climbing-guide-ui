@@ -60,16 +60,14 @@ const baseName = (n?: string | symbol | null) => typeof n === 'string' ? n.split
 const isItemActive = (item: { name: string; isHome?: boolean }) => {
   const current = baseName(route.name as any)
   // Home = exact only; others = inclusive (parent active on children)
-  return item.isHome
-    ? current === item.name
-    : current === item.name || route.matched.some(r => baseName(r.name as any) === item.name)
+  return item.isHome ? current === item.name : current.startsWith(item.name)
 }
 </script>
 
 
 <style lang="scss" scoped>
 .bottom-navigation-component {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: var(--secondary_100);
   color: var(--md-sys-color-on-surface-variant);
   display: flex;
   justify-content: space-around;
@@ -100,10 +98,11 @@ const isItemActive = (item: { name: string; isHome?: boolean }) => {
     }
   }
 
-  &.router-link-active {      
+  .router-link-active {      
     .navigation-icon-container {
       color: var(--primary_100);
       background-size: 100% 100%;
+      background: var(--secondary_200);
     }
 
     .navigation-label-container {

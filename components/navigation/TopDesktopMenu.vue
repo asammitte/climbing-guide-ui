@@ -9,6 +9,7 @@
           v-for="(item, i) in menuItems"
           :key="i"
           :to="localePath({ name: item.urlName })"
+          :class="{ 'is-active': isActive(item)}"
         >
           {{  item.title }}
         </nuxt-link>
@@ -24,10 +25,21 @@
 
 
 <script setup lang="ts">
+import { useRoute } from '#app'
 import LanguageSelector from '~/components/navigation/LanguageSelector.vue'
 
 const localePath = useLocalePath()
 const menuItems = useMenuItems()
+const route = useRoute()
+
+// strip nuxt-i18n's name suffix, e.g. "areas___en" -> "areas"
+const baseName = (n?: string | symbol | null) => typeof n === 'string' ? n.split('___')[0] : ''
+
+function isActive(item: IMenuItem) {
+  const current = baseName(route.name as any)
+  // Home = exact only; others = inclusive (parent active on children)
+  return item.isHome ? current === item.urlName : current.startsWith(item.urlName)
+}
 </script>
 
 
@@ -71,7 +83,8 @@ const menuItems = useMenuItems()
         text-transform: uppercase;
         column-gap: 12px;
 
-        .router-link-active {
+        .router-link-active,
+        .is-active {
           color: var(--primary_100);
         }
       }

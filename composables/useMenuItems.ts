@@ -10,12 +10,14 @@ const { t } = useI18n({
   useScope: 'local',
   messages: {
     en: {
+      admin: 'Admin',
       articles: 'Articles',
       guide: 'Guide',
       home: 'Home',
       videos: 'Videos',
     },
     ua: {
+      admin: 'Адмін',
       articles: 'Статті',
       guide: 'Гайд',
       home: 'Головна',
@@ -28,6 +30,7 @@ const { t } = useI18n({
     { title: t('home'),  urlName: 'index', isHome: true },
     { title: t('guide'), urlName: 'areas' },
     { title: t('videos'), urlName: 'videos' },
-    { title: t('articles'), urlName: 'drawing' }
+    { title: t('articles'), urlName: 'drawing' },
+    { title: t('admin'), urlName: 'admin-areas' }
   ])
 }

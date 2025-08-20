@@ -67,7 +67,6 @@ import TopAppBar from '~/components/navigation/TopAppBar.vue'
 import LoadingStatus from '~/components/common/LoadingStatus.vue'
 // import SvgIcon from '~/components/common/SvgIcon.vue'
 
-const localePath = useLocalePath()
 const route = useRoute()
 const { $api } = useNuxtApp()
 

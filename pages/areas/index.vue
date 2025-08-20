@@ -64,6 +64,7 @@ const { data: paginatedAreasAsync, status: paginatedAreasStatus } = await useAsy
       @include heading2;
       text-align: center;
       margin-bottom: 24px;
+      margin-top: 32px;
     }
   }
 }

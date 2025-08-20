@@ -14,7 +14,7 @@
           </div>
           <div class="item-pages">
             <div v-for="(item, i) in menuItems" :key="i" class="item-page">
-              <nuxt-link :to="localePath({ name: item.urlName })">
+              <nuxt-link :to="localePath({ name: item.urlName })" :class="{ 'is-active': isActive(item) }">
                 {{  item.title }}
               </nuxt-link>
             </div>
@@ -30,11 +30,13 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from '#app'
 import { computed, onMounted, onBeforeUnmount } from 'vue'
 import { useLayoutStore } from '~/stores/LayoutStore'
 import LanguageSelector from '~/components/navigation/LanguageSelector.vue'
 import SvgIcon from '~/components/common/SvgIcon.vue'
 
+const route = useRoute()
 const localePath = useLocalePath()
 const menuItems = useMenuItems()
 const { updateSlideMenuVisibility } = useLayoutStore()
@@ -46,6 +48,15 @@ const isMenuVisible = computed(() => useLayoutStore().isSlideMenuVisible)
 function setVh() {
   const h = window.visualViewport?.height ?? window.innerHeight
   document.documentElement.style.setProperty('--vh', `${h * 0.01}px`)
+}
+
+// strip nuxt-i18n's name suffix, e.g. "areas___en" -> "areas"
+const baseName = (n?: string | symbol | null) => typeof n === 'string' ? n.split('___')[0] : ''
+
+function isActive(item: IMenuItem) {
+  const current = baseName(route.name as any)
+  // Home = exact only; others = inclusive (parent active on children)
+  return item.isHome ? current === item.urlName : current.startsWith(item.urlName)
 }
 
 onMounted(() => {
@@ -142,6 +153,11 @@ onBeforeUnmount(() => {
       .item-page {
         text-align: center;
         margin-bottom: 24px;
+      }
+
+      .router-link-active,
+      .is-active {
+        color: var(--primary_100);
       }
     }
 

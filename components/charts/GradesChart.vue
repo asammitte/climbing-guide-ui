@@ -1,6 +1,6 @@
 <template>
   <div class="area-season-chart-component">
-    <div class="chart-title">{{ t('linesByGrades') }}</div>
+    <div class="chart-title">{{ t('routesByGrades') }}</div>
 
     <div class="cg-chart">
       <div class="chart-bars">
@@ -34,10 +34,10 @@ const { t } = useI18n({
   useScope: 'local',
   messages: {
     en: {
-      linesByGrades: 'GRADES'
+      routesByGrades: 'GRADES'
     },
     ua: {
-      linesByGrades: 'КАТЕГОРІЇ'
+      routesByGrades: 'КАТЕГОРІЇ'
     },
   }
 })
