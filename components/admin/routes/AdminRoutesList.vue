@@ -41,7 +41,7 @@
             {{ r.totalAscents }}
           </td>
           <td>
-            <svg-icon :icon="!!r.lineJSON ? 'cg_eye' : 'cg_closed_eye'" />
+            <svg-icon :icon="doesRouteHasSegments(r.lineJSON) ? 'cg_eye' : 'cg_closed_eye'" />
           </td>
           <td>
             <button class="cg-btn cg-btn__danger" type="submit" @click="deleteRoute(r.id)">
@@ -58,6 +58,7 @@
 <script setup lang="ts">
 import { useNuxtApp } from '#app'
 import type { IRoutesListItem } from '~/types/routes/IRoutesListItem'
+import { useRouteSegments } from '~/composables/useRouteSegments'
 import SvgIcon from '~/components/common/SvgIcon.vue'
 
 const props = defineProps<{
@@ -66,6 +67,7 @@ const props = defineProps<{
 
 const { $api } = useNuxtApp()
 const localePath = useLocalePath()
+const { doesRouteHasSegments } = useRouteSegments()
 
 const { t } = useI18n({
   useScope: 'local',

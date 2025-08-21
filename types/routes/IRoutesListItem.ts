@@ -6,6 +6,7 @@ export interface IRoutesListItem {
   position: number
   boltsAmount: number
   imageId: number
+  imageUrl: string
   lineJSON: string
   totalAscents: number
   totalVideos: number

@@ -38,17 +38,14 @@ export function useRouteSegments() {
    * - already-parsed array             -> validated/normalized
    */
   function parseSegments(input: unknown, box: Box = DEFAULT_BOX): Segments {
-    // empty -> no segments
     if (input === null || input === undefined) return []
-    // already-parsed array
     if (Array.isArray(input)) {
       if (!isValidSegments(input, box)) throw new Error('Geometry is not a valid segments array')
       return normalize(input, box)
     }
-    // string input (possibly empty/whitespace)
     if (typeof input === 'string') {
       const s = input.trim()
-      if (!s) return [] // tolerate empty strings
+      if (!s) return []
       let data: unknown
       try {
         data = JSON.parse(s)
@@ -58,7 +55,6 @@ export function useRouteSegments() {
       if (!isValidSegments(data, box)) throw new Error('Geometry is not a valid segments array')
       return normalize(data as Segments, box)
     }
-    // anything else is invalid
     throw new Error('Expected geometry as JSON string or array')
   }
 
@@ -67,9 +63,20 @@ export function useRouteSegments() {
     return JSON.stringify(segments ?? [])
   }
 
+  /** Type guard (already-parsed value). */
   function isSegments(value: unknown, box: Box = DEFAULT_BOX): value is Segments {
     return isValidSegments(value, box)
   }
 
-  return { parseSegments, stringifySegments, isSegments }
+  /** Convenience: does this input contain ANY valid segments? */
+  function doesRouteHasSegments(input: unknown, box: Box = DEFAULT_BOX): boolean {
+    try {
+      const segs = parseSegments(input, box) // tolerant of "", null, etc.
+      return segs.length > 0
+    } catch {
+      return false
+    }
+  }
+
+  return { parseSegments, stringifySegments, isSegments, doesRouteHasSegments }
 }
