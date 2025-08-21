@@ -11,12 +11,6 @@
       <top-desktop-menu />
     </div>
     <div class="container">
-      <cg-breadcrumbs
-        :items="items"
-        :max-items="5"
-        class="mb-4"
-        separator="/"
-      />
       <slot />
     </div>
     <footer>
@@ -122,8 +116,8 @@ watch(() => route.fullPath, () => {
 <style lang="scss">
 .default-layout {
   width: 100vw;
-  min-height: calc(100vh - 77px);
-  padding-bottom: 77px;
+  min-height: calc(100vh - 69px);
+  padding-bottom: 69px;
 
   .sticky-top {
     position: sticky;
