@@ -260,10 +260,19 @@ onUnmounted(() => process.client && window.removeEventListener('keydown', onKey)
 
 <style scoped lang="scss">
 .sector-page {
+  // display: flex;
+  // flex-direction: column;
+  // overflow-x: clip;      /* guard against accidental horizontal scroll */
+  // touch-action: pan-y;   /* allow vertical scrolling while we detect horizontal swipes */
+  /* Fill the on-screen viewport (when bars are visible) */
+  height: calc(100svh - 69px);
+  min-height: calc(100svh - 69px);
   display: flex;
   flex-direction: column;
-  overflow-x: clip;      /* guard against accidental horizontal scroll */
-  touch-action: pan-y;   /* allow vertical scrolling while we detect horizontal swipes */
+  overflow: hidden;              /* lock page scroll; children will scroll */
+  overscroll-behavior: contain;  /* avoid scroll chaining / rubber banding */
+  overflow-x: clip;
+  touch-action: pan-y;
 }
 
 /* Clip wrappers prevent page-wide horizontal scroll during slides */
@@ -278,15 +287,32 @@ onUnmounted(() => process.client && window.removeEventListener('keydown', onKey)
   position: relative;
 }
 
-.table-swap-clip { /* just the clip wrapper for the table transition */ }
-
-.routes-table {
-  max-height: 45vh;
-  overflow: auto;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.06) inset;
+.table-swap-clip {
+  /* Let the table area take remaining height and host the inner scrollbox */
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;   /* critical so the child can shrink below content height */
+  display: flex;
 }
+
+// .routes-table {
+//   max-height: 45vh;
+//   overflow: auto;
+//   border-radius: 8px;
+//   background: #fff;
+//   box-shadow: 0 0 0 1px rgba(0,0,0,0.06) inset;
+// }
+/* Make the RoutesScrollableTable’s root (rs-wrap) fill and scroll */
+:deep(.rs-wrap) {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+/* (Optional) give the scroller safe-area padding so the last rows aren't hidden
+   behind iOS home indicator when bars are visible. */
+:deep(.rs-wrap) { padding-bottom: env(safe-area-inset-bottom, 0); }
 
 /* Transition animations (direction-aware, fully clipped) */
 .slide-left-enter-from  { transform: translateX(100%);  opacity: 0.01; }
@@ -305,6 +331,11 @@ onUnmounted(() => process.client && window.removeEventListener('keydown', onKey)
 @media (min-width: $laptop-breakpoint) {
   .sector-page {
     /* switch to grid, two columns */
+    // display: grid;
+    /* On desktop allow normal page scrolling again */
+    height: auto;
+    min-height: 0;
+    overflow: visible;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
@@ -316,15 +347,17 @@ onUnmounted(() => process.client && window.removeEventListener('keydown', onKey)
   }
 
   /* assign areas */
-  .table-swap-clip { grid-area: table; min-width: 0; min-height: 0; }
+  // .table-swap-clip { grid-area: table; min-width: 0; min-height: 0; }
+  .table-swap-clip { grid-area: table; min-width: 0; min-height: 0; display: block; }
   .stage-clip      { grid-area: stage; min-width: 0; min-height: 0; }
   .photo-dots      { grid-area: dots;  justify-self: center; margin: 4px 0 0 0; }
 
   /* give the table more vertical room on desktop */
-  .routes-table {
-    max-height: none;   /* remove the mobile cap on desktop */
-    overflow: visible;  /* let the page handle scrolling */
-  }
+  // .routes-table {
+  //   max-height: none;   /* remove the mobile cap on desktop */
+  //   overflow: visible;  /* let the page handle scrolling */
+  // }
+  :deep(.rs-wrap) { height: auto; overflow: visible; } /* desktop: no inner scrollbox */
 
   /* keep the stage nicely sized on the right */
   .stage { aspect-ratio: 4 / 3; }

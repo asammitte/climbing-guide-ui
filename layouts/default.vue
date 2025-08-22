@@ -14,7 +14,6 @@
       <slot />
     </div>
     <footer>
-      <!-- <div>&copy; {{ new Date().getFullYear() }}</div> -->
       <bottom-navigation />
     </footer>
   </div>
@@ -115,8 +114,8 @@ watch(() => route.fullPath, () => {
 
 <style lang="scss">
 .default-layout {
-  width: 100vw;
-  min-height: calc(100vh - 69px);
+  width: 100svw;
+  min-height: calc(100svh - 69px);
   padding-bottom: 69px;
 
   .sticky-top {

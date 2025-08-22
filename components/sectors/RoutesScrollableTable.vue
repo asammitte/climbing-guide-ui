@@ -303,7 +303,14 @@ watch(() => props.activeRouteId, async (newId) => {
 
 
 <style scoped lang="scss">
-.rs-wrap { overflow: auto; -webkit-overflow-scrolling: touch; }
+// .rs-wrap { overflow: auto; -webkit-overflow-scrolling: touch; }
+.rs-wrap {
+  height: 100%;                 /* fill the flex slot from the page */
+  overflow: auto;               /* inner scrollbox (mobile) */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; /* avoid bubbling that might collapse bars */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
 .rs-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .rs-table thead th {
   position: sticky; top: 0; background: #f7f9fb; z-index: 1;
@@ -324,7 +331,8 @@ tbody tr:hover { background: #f3f7fb; }
 
 /* Desktop: let page scroll; no inner scrollbox; no mobile tricks */
 @media (min-width: 1024px) {
-  .rs-wrap { overflow: visible; }
+  // .rs-wrap { overflow: visible; }
+  .rs-wrap { height: auto; overflow: visible; } /* desktop: let page scroll */
   .col-grade { display: table-cell; }
 }
 </style>
