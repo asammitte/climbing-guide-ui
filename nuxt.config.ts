@@ -8,6 +8,7 @@ const cert = fs.readFileSync('./localhost.crt', 'utf-8')
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
   // devServer: {
   //   https: {
   //     key,
@@ -17,9 +18,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Private keys are only available on the server
     apiSecret: '123',
+    apiProxyUrl: process.env.NUXT_API_BASE,
     // Public keys that are exposed to the client
     public: {
-      apiProxyUrl: process.env.NUXT_PUBLIC_API_BASE,
       // API_BASE_URL: process.env.API_BASE_URL || '/api',
       googleClientId: process.env.GOOGLE_CLIENT_ID ?? '',
     },

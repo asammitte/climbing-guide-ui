@@ -3,7 +3,7 @@ import { joinURL } from 'ufo'
 
 export default eventHandler(async (event) => {
   // Get runtime config proxy url
-  const { public: { apiProxyUrl } } = useRuntimeConfig()
+  const { apiProxyUrl } = useRuntimeConfig()
   const path = event.path.replace(/^\/api\/dotnet\//, '/api/') // /api/dotnet/users -> /api/users
   const target = joinURL(apiProxyUrl, path)
 
