@@ -18,8 +18,8 @@ export default defineNuxtConfig({
     // Private keys are only available on the server
     apiSecret: '123',
     // Public keys that are exposed to the client
-    apiProxyUrl: process.env.PROXY_API_URL,
     public: {
+      apiProxyUrl: process.env.NUXT_PUBLIC_API_BASE,
       // API_BASE_URL: process.env.API_BASE_URL || '/api',
       googleClientId: process.env.GOOGLE_CLIENT_ID ?? '',
     },
