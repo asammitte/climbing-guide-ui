@@ -8,7 +8,7 @@ RUN corepack enable \
     && if [ -f .yarnrc.yml ]; then yarn install --immutable; else yarn install --frozen-lockfile; fi
 COPY . .
 ENV NUXT_TELEMETRY_DISABLED=1
-RUN yarn build   # SSR build -> outputs to .output/
+RUN yarn build   # SSR build -> .output/
 
 # --- Run stage (SSR server) ---
 FROM node:20-alpine
