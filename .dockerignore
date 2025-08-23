@@ -1,0 +1,42 @@
+# ---- UI .dockerignore (Nuxt 3 SSR) ----
+# VCS / OS
+.git
+.gitignore
+*.swp
+*.swo
+*.DS_Store
+
+# Package manager caches
+node_modules
+.npm
+.yarn
+
+# Nuxt build outputs (local)
+.nuxt
+.output
+dist
+.cache
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env & secrets (keep examples)
+.env
+.env.*
+!.env.example
+
+# IDE / editor folders
+.vscode
+.idea
+*.iml
+
+# Tests / coverage
+coverage
+*.map
+
+# build artifacts we generate locally to ship to EC2
+climbingguide-*.tar
+climbingguide-*.tar.gz
