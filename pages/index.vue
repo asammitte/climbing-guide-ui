@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>Welcome to the homepage</span>
+    <span>Welcome to the homepage 2.2</span>
   </div>
 </template>
 

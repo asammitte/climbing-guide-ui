@@ -25,10 +25,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Private keys are only available on the server
     apiSecret: '123',
-    apiProxyUrl: process.env.API_PROXY_URL,
+    apiProxyUrl: '',
     // Public keys that are exposed to the client
     public: {
-      // API_BASE_URL: process.env.API_BASE_URL || '/api',
+      cdnBaseUrl: '',
       googleClientId: process.env.GOOGLE_CLIENT_ID ?? '',
     },
   },
